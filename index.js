@@ -1,8 +1,8 @@
-require('dotenv')
+require('dotenv').config()
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
-const allRoutes = require('./src/routes/index')
+const allRoutes = require('./src/routes/index.routes')
 
 // Conection MongoDB
 require('./src/db/mongo')
