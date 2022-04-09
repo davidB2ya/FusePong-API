@@ -20,7 +20,13 @@ dashboardRouter.get('/tacks/:id', async (req, res) => {
             tacks.push(
                 {   
                     id : index,
-                    company: projects[index].nameProjects,
+                    project: {
+                        id: projects[index]._id,
+                        name : projects[index].nameProjects,
+                        logo :  projects[index].logoProjects,
+                        state : projects[index].state,
+                        id_user : projects[index].user
+                    },
                     ticket: tickets
                 }
             )
