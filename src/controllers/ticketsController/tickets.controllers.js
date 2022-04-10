@@ -43,7 +43,7 @@ ticketsRouter.post('/create-ticket', async (req, res) => {
 ticketsRouter.put('/update-ticket/:id', async (req, res) => {
     let id = req.params.id
     const { nameTickets, description, state, id_user } = req.body;
-
+    try{
     Tickets.updateOne(
         { _id: id },
         {
@@ -55,10 +55,11 @@ ticketsRouter.put('/update-ticket/:id', async (req, res) => {
             }
         },
     )
-        .then(function () {
-            success(req, res, 'Ticket updated successfully!', 200)
-        })
-        .catch(err => res.status(500).json({ msg: err.message }))
+    success(req, res, 'Ticket updated successfully!', 200)
+    } catch (err) {
+        return res.status(500).json({ msg: err.message })
+    }
+    
 })
 
 // Delete a ticket
