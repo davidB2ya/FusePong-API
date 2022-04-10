@@ -56,7 +56,7 @@ usersRouter.post('/create-user', async (req, res) => {
 //  Put update a user
 usersRouter.put('/update-user/:id', async (req, res) => {
     let id = req.params.id
-    const { name, email, password, role } = req.body
+    const { name, email, password, phoneNumber,avatar, id_company } = req.body
 
     User.updateOne(
         { _id: id },
@@ -65,7 +65,9 @@ usersRouter.put('/update-user/:id', async (req, res) => {
                 name: name,
                 email: email,
                 password: password,
-                role: role
+                phoneNumber : phoneNumber,
+                avatar : avatar, 
+                id_company : id_company
             }
         },
     )
