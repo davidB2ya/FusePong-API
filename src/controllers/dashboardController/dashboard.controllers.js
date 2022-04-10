@@ -25,7 +25,7 @@ dashboardRouter.get('/tacks/:id', async (req, res) => {
                         name : projects[index].nameProjects,
                         logo :  projects[index].logoProjects,
                         state : projects[index].state,
-                        id_user : projects[index].user
+                        user : projects[index].id_user
                     },
                     ticket: tickets
                 }
