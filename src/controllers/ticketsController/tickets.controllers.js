@@ -43,23 +43,23 @@ ticketsRouter.post('/create-ticket', async (req, res) => {
 ticketsRouter.put('/update-ticket/:id', async (req, res) => {
     let id = req.params.id
     const { nameTickets, description, state, id_user } = req.body;
-    try{
-    Tickets.updateOne(
-        { _id: id },
-        {
-            $set: {
-                nameTickets: nameTickets,
-                description: description,
-                state: state,
-                id_user: id_user,
-            }
-        },
-    )
-    success(req, res, 'Ticket updated successfully!', 200)
+    try {
+        await Tickets.updateOne(
+            { _id: id },
+            {
+                $set: {
+                    nameTickets: nameTickets,
+                    description: description,
+                    state: state,
+                    id_user: id_user,
+                }
+            },
+        )
+        success(req, res, 'Ticket updated successfully!', 200)
     } catch (err) {
         return res.status(500).json({ msg: err.message })
     }
-    
+
 })
 
 // Delete a ticket
@@ -87,7 +87,7 @@ ticketsRouter.get('/one/:id', async (req, res) => {
 ticketsRouter.get('/all-tickets/:id', async (req, res) => {
 
     try {
-        const tickets = await Tickets.find({id_project: id})
+        const tickets = await Tickets.find({ id_project: id })
         success(req, res, tickets, 200);
     } catch (error) {
         return res.status(500).json({ msg: error.message })
